@@ -242,7 +242,7 @@ function App() {
                     <p>{project.meta} · {project.team}</p>
                   </div>
                   <h3>{project.title}</h3>
-                  <p className="project-contribution-label">MY CONTRIBUTION</p>
+                  <p className="project-contribution-label">프로젝트 기여</p>
                   <ul className="project-highlights">
                     {project.cardHighlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
