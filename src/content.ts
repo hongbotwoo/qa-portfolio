@@ -3,7 +3,6 @@ export const navigation = [
   { label: 'About', href: '#about' },
   { label: 'QA Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
 ]
 
 export const heroContent = {
@@ -14,12 +13,24 @@ export const heroContent = {
   description:
     '요구명세서를 분석하여 테스트 케이스를 설계하고 UI를 자동화하며\n발견한 문제를 재현 가능한 기록으로 남기는 QA 엔지니어 홍성우입니다.',
   primaryAction: '프로젝트 보기',
-  secondaryAction: '문제 해결 사례',
   strengths: [
     { number: '01', label: '테스트 설계', detail: '정상·예외 흐름' },
     { number: '02', label: 'UI 자동화', detail: 'Selenium · Playwright' },
     { number: '03', label: '결함 분석', detail: '재현 · 원인 확인' },
   ],
+}
+
+export const downloadContent = {
+  resume: {
+    title: '이력서 다운로드',
+    description: '공개용 이력서 PDF를 준비 중입니다.',
+    detail: '최종 공개본이 준비되면 이 버튼에 다운로드 링크를 연결하겠습니다.',
+  },
+  portfolio: {
+    title: '포트폴리오 다운로드',
+    description: '포트폴리오 자료를 준비 중입니다.',
+    detail: '현재 웹사이트에서 프로젝트와 문제 해결 사례를 확인하실 수 있습니다.',
+  },
 }
 
 export const aboutContent = {

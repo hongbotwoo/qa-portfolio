@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { aboutContent, heroContent, navigation, projectsContent, skillsContent } from './content'
+import { aboutContent, downloadContent, heroContent, navigation, projectsContent, skillsContent } from './content'
 
 type Project = (typeof projectsContent.projects)[number]
+type DownloadKind = keyof typeof downloadContent
 
 function ArrowDownRight() {
   return (
@@ -23,8 +24,11 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [downloadKind, setDownloadKind] = useState<DownloadKind | null>(null)
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null)
   const modalRef = useRef<HTMLDivElement | null>(null)
+  const lastDownloadTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const downloadModalRef = useRef<HTMLDivElement | null>(null)
 
   const openProject = (project: Project, trigger: HTMLButtonElement) => {
     lastTriggerRef.current = trigger
@@ -32,6 +36,13 @@ function App() {
   }
 
   const closeProject = () => setSelectedProject(null)
+
+  const openDownload = (kind: DownloadKind, trigger: HTMLButtonElement) => {
+    lastDownloadTriggerRef.current = trigger
+    setDownloadKind(kind)
+  }
+
+  const closeDownload = () => setDownloadKind(null)
 
   useEffect(() => {
     const closeOnResize = () => {
@@ -61,6 +72,26 @@ function App() {
       lastTriggerRef.current?.focus()
     }
   }, [selectedProject])
+
+  useEffect(() => {
+    if (!downloadKind) return
+
+    const previousOverflow = document.body.style.overflow
+    const focusTimer = window.setTimeout(() => downloadModalRef.current?.focus(), 0)
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeDownload()
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      window.clearTimeout(focusTimer)
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+      lastDownloadTriggerRef.current?.focus()
+    }
+  }, [downloadKind])
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'))
@@ -162,9 +193,12 @@ function App() {
                 {heroContent.primaryAction}
                 <ArrowDownRight />
               </a>
-              <a className="button button-secondary" href="#troubleshooting">
-                {heroContent.secondaryAction}
-              </a>
+              <button className="button button-secondary" type="button" onClick={(event) => openDownload('resume', event.currentTarget)}>
+                이력서 다운로드
+              </button>
+              <button className="button button-secondary" type="button" onClick={(event) => openDownload('portfolio', event.currentTarget)}>
+                포트폴리오 다운로드
+              </button>
             </div>
 
           </div>
@@ -555,6 +589,40 @@ function App() {
                 </div>
                 <ul className="project-story-list">{selectedProject.improvements.map((item) => <li key={item}>{item}</li>)}</ul>
               </section>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {downloadKind && (
+        <div
+          className="download-modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) closeDownload()
+          }}
+        >
+          <div
+            className="download-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="download-modal-title"
+            ref={downloadModalRef}
+            tabIndex={-1}
+          >
+            <header className="download-modal-header">
+              <div>
+                <p className="project-detail-label">DOWNLOAD</p>
+                <h2 id="download-modal-title">{downloadContent[downloadKind].title}</h2>
+              </div>
+              <button className="modal-close-button" type="button" aria-label="다운로드 안내 닫기" onClick={closeDownload}>
+                <span aria-hidden="true">×</span>
+              </button>
+            </header>
+            <div className="download-modal-body">
+              <div className="download-modal-mark" aria-hidden="true">↓</div>
+              <p className="download-modal-message">{downloadContent[downloadKind].description}</p>
+              <p className="download-modal-note">{downloadContent[downloadKind].detail}</p>
             </div>
           </div>
         </div>
