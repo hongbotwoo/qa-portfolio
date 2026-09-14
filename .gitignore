@@ -8,6 +8,12 @@ dist/
 tmp/
 docs/
 AGENTS.md
+.sites-runtime/
+.codex-*/
+.reference-first-project-render/
+output/
+build_qa_portfolio_pptx*.mjs
+public/project-assets/*-frame.png
 
 # local environment files
 .env

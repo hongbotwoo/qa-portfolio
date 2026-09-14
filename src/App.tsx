@@ -98,8 +98,8 @@ function App() {
       <header className="site-header">
         <div className="site-header-inner">
           <a className="brand" href="#home" aria-label="홈으로 이동">
-            <span className="brand-mark">HS</span>
-            <span className="brand-role">Quality Assurance</span>
+            <span className="brand-mark">HSW</span>
+            <span className="brand-role">QA</span>
           </a>
 
           <nav className={`navigation ${isMenuOpen ? 'is-open' : ''}`} aria-label="주요 메뉴">

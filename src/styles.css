@@ -73,6 +73,7 @@ a {
 }
 
 .site-header-inner {
+  position: relative;
   width: min(100% - 64px, 1080px);
   height: 100%;
   margin-inline: auto;
@@ -93,11 +94,6 @@ a {
   letter-spacing: -0.04em;
 }
 
-.brand-mark::after {
-  content: ".";
-  color: var(--accent);
-}
-
 .brand-role {
   padding-left: 13px;
   color: #89958f;
@@ -109,9 +105,12 @@ a {
 }
 
 .navigation {
+  position: absolute;
+  left: 50%;
   display: flex;
   align-items: center;
   gap: 28px;
+  transform: translateX(-50%);
 }
 
 .navigation a {
