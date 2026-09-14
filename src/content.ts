@@ -3,7 +3,6 @@ export const navigation = [
   { label: 'About', href: '#about' },
   { label: 'QA Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Troubleshooting', href: '#troubleshooting' },
   { label: 'Contact', href: '#contact' },
 ]
 
