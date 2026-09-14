@@ -359,7 +359,6 @@ function App() {
                           loading="lazy"
                         />
                         <div className="project-tool-evidence-content">
-                          <p className="project-detail-label">POSTMAN</p>
                           <strong>{selectedProject.postmanEvidence.title}</strong>
                           <p>{selectedProject.postmanEvidence.description}</p>
                           <ul className="project-tool-evidence-list">
@@ -380,7 +379,6 @@ function App() {
                           loading="lazy"
                         />
                         <div className="project-tool-evidence-content">
-                          <p className="project-detail-label">JIRA</p>
                           <strong>{selectedProject.jiraEvidence.title}</strong>
                           <p>{selectedProject.jiraEvidence.description}</p>
                         </div>
