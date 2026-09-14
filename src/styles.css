@@ -1237,38 +1237,98 @@ a {
   flex: 1;
 }
 
-.jira-evidence {
-  width: min(100%, calc(50% - 8px));
-  margin: 16px 0 0;
+.project-tool-evidence-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.project-tool-evidence-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  background: rgb(255 255 255 / 1.5%);
   border: 1px solid var(--line);
   border-radius: 12px;
 }
 
-.jira-evidence img {
-  display: block;
+.project-tool-evidence-card > img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 270px;
+  display: block;
+  object-fit: contain;
   object-position: top center;
+  background: #fff;
 }
 
-.jira-evidence figcaption {
-  padding: 14px 16px 16px;
+.project-tool-evidence-content {
+  flex: 1;
+  padding: 16px;
   border-top: 1px solid var(--line);
 }
 
-.jira-evidence strong {
+.project-tool-evidence-content > strong {
+  display: block;
+  margin-top: 9px;
   color: var(--text);
-  font-size: 0.83rem;
+  font-size: 0.9rem;
+  letter-spacing: -0.025em;
 }
 
-.jira-evidence p {
-  margin: 7px 0 0;
+.project-tool-evidence-content > p:not(.project-detail-label):not(.project-tool-evidence-result) {
+  margin: 8px 0 0;
   color: #aeb8b4;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.project-tool-evidence-list {
+  margin: 13px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  color: #aeb8b4;
+  font-size: 0.76rem;
+  line-height: 1.55;
+  list-style: none;
+}
+
+.project-tool-evidence-list li {
+  position: relative;
+  padding-left: 13px;
+}
+
+.project-tool-evidence-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.project-tool-evidence-result {
+  margin: 15px 0 0;
+  padding-top: 12px;
+  color: #aeb8b4;
+  border-top: 1px solid var(--line);
   font-size: 0.76rem;
   line-height: 1.6;
   word-break: keep-all;
+}
+
+.project-tool-evidence-result span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
 }
 
 .team-convention-card {
@@ -1706,8 +1766,8 @@ a {
     max-height: 300px;
   }
 
-  .jira-evidence {
-    width: 100%;
+  .project-tool-evidence-grid {
+    grid-template-columns: 1fr;
   }
 
   .team-convention-card {

@@ -349,18 +349,44 @@ function App() {
                     ))}
                   </div>
                 )}
-                {selectedProject.jiraEvidence && (
-                  <figure className="jira-evidence">
-                    <img
-                      src={selectedProject.jiraEvidence.image}
-                      alt={selectedProject.jiraEvidence.alt}
-                      loading="lazy"
-                    />
-                    <figcaption>
-                      <strong>{selectedProject.jiraEvidence.title}</strong>
-                      <p>{selectedProject.jiraEvidence.description}</p>
-                    </figcaption>
-                  </figure>
+                {(selectedProject.postmanEvidence || selectedProject.jiraEvidence) && (
+                  <div className="project-tool-evidence-grid">
+                    {selectedProject.postmanEvidence && (
+                      <article className="project-tool-evidence-card">
+                        <img
+                          src={selectedProject.postmanEvidence.image}
+                          alt={selectedProject.postmanEvidence.alt}
+                          loading="lazy"
+                        />
+                        <div className="project-tool-evidence-content">
+                          <p className="project-detail-label">POSTMAN</p>
+                          <strong>{selectedProject.postmanEvidence.title}</strong>
+                          <p>{selectedProject.postmanEvidence.description}</p>
+                          <ul className="project-tool-evidence-list">
+                            {selectedProject.postmanEvidence.steps.map((step) => <li key={step}>{step}</li>)}
+                          </ul>
+                          <p className="project-tool-evidence-result">
+                            <span>RESULT</span>
+                            {selectedProject.postmanEvidence.result}
+                          </p>
+                        </div>
+                      </article>
+                    )}
+                    {selectedProject.jiraEvidence && (
+                      <article className="project-tool-evidence-card">
+                        <img
+                          src={selectedProject.jiraEvidence.image}
+                          alt={selectedProject.jiraEvidence.alt}
+                          loading="lazy"
+                        />
+                        <div className="project-tool-evidence-content">
+                          <p className="project-detail-label">JIRA</p>
+                          <strong>{selectedProject.jiraEvidence.title}</strong>
+                          <p>{selectedProject.jiraEvidence.description}</p>
+                        </div>
+                      </article>
+                    )}
+                  </div>
                 )}
                 {selectedProject.teamConventions && (
                   <article className="team-convention-card">

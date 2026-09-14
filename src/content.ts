@@ -164,6 +164,7 @@ export const projectsContent = {
       testResultEvidence: null,
       resultMetrics: null,
       ciEvidence: [],
+      postmanEvidence: null,
       jiraEvidence: null,
       teamConventions: null,
       comparisonEvidence: [],
@@ -269,6 +270,19 @@ export const projectsContent = {
           'E2E/UI/UX 테스트에서 확인한 이슈를 Jira에 등록하고 진행 상태를 팀과 공유했습니다.',
         image: './project-assets/elice-jira-board.png',
         alt: 'E2E/UI/UX 테스트 이슈가 등록된 Jira 보드 화면',
+      },
+      postmanEvidence: {
+        title: 'Postman API 사전조건 구성',
+        description:
+          'Postman으로 API 동작을 확인한 뒤, pytest 실행 전 시험 응시 상태를 초기화했습니다.',
+        steps: [
+          '재응시 허용 API 동작을 수동 검증',
+          'pytest 실행 전 API 호출',
+          '시험 응시 상태를 초기화해 동일 조건으로 시작',
+        ],
+        result: '특정 시험 응시 테스트를 반복 실행할 수 있는 사전조건을 구성했습니다.',
+        image: './project-assets/elice-postman-reset-request.png',
+        alt: 'Postman에서 시험 재응시 허용 API를 호출하는 화면',
       },
       teamConventions: {
         title: 'GitLab 브랜치 전략과 Python 코드 규칙',
